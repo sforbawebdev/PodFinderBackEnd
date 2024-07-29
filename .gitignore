@@ -1,0 +1,85 @@
+# Node modules
+node_modules/
+
+# TypeScript output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Tests
+/coverage/
+*.lcov
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Miscellaneous
+/.yarn-integrity
+/.pnp.*
+/.eslintcache
+.stylelintcache
+.turbo/
+turbo/
+.next/
+.cache/
+.parcel-cache/
+.cache-loader/
+*.tsbuildinfo
+.sass-cache/
+.pnpm-debug.log*
+
+# Ignore lock files, unless you want to commit them
+# yarn.lock
+# package-lock.json
+# pnpm-lock.yaml
+
+# Ignore macOS .DS_Store and other hidden files
+.DS_Store
+._*
+
+# Ignore TSC watch build output
+.tsbuildinfo
+
+# Ignore build artifacts
+build/
+dist/
+out/
+
+# Ignore compiled TypeScript files
+*.tsbuildinfo
+*.d.ts
+*.js
+*.js.map
+
+# Ignore temporary files
+tmp/
+temp/
+tmp/**/*
+temp/**/*
+
+# Ignore specific to your project
+# Add any other specific files or folders that should be ignored

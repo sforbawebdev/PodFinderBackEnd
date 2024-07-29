@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  username    String       @unique
+  email       String       @unique
+  password    String
+  profileInfo String?
+  pods        Pod[]
+  memberships Membership[]
+  messages    Message[]    @relation("SenderMessages")
+  receivedMessages Message[] @relation("ReceiverMessages")
+}
+
+model Pod {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  location    String
+  time        DateTime
+  format      String
+  creatorId   Int
+  creator     User         @relation(fields: [creatorId], references: [id])
+  memberships Membership[]
+  messages    Message[]
+}
+
+model Membership {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  podId  Int
+  status String
+  user   User   @relation(fields: [userId], references: [id])
+  pod    Pod    @relation(fields: [podId], references: [id])
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  podId      Int
+  content    String
+  timestamp  DateTime
+  sender     User     @relation("SenderMessages", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceiverMessages", fields: [receiverId], references: [id])
+  pod        Pod      @relation(fields: [podId], references: [id])
+}
